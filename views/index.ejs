@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>EJS Welcome to <%= title %>
+  </p>
+  <input type="text" id="url">
+  <button id="btn">下载</button>
+</body>
+<script>
+  let btnDom = document.querySelector('#btn')
+  btnDom.addEventListener('click', () => {
+    let content = document.querySelector('#url').value
+    // 这是传统的下载方式
+    const downloadFileA = document.createElement('a')
+    document.body.append(downloadFileA)
+    downloadFileA.href = "#"
+    downloadFileA.download = content
+    // 超链接 target="_blank" 要增加 rel="noopener noreferrer" 来堵住钓鱼安全漏洞。如果你在链接上使用 target="_blank"属性，并且不加上rel="noopener"属性，那么你就让用户暴露在一个非常简单的钓鱼攻击之下。(摘要)
+    downloadFileA.rel = 'noopener noreferrer'
+    downloadFileA.click()
+    document.body.removeChild(downloadFileA)
+  })
+</script>
+
+</html>
